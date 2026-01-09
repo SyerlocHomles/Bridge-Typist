@@ -48,7 +48,7 @@ if not st.session_state.game_over:
         </div>
     """, unsafe_allow_html=True)
 
-input_user = st.text_input("Ketik di sini lalu tekan ENTER:", key="typing_input").upper()
+    input_user = st.text_input("Ketik di sini lalu tekan ENTER:", key="typing_input").upper()
 
     if input_user:
         target = st.session_state.kata_target
