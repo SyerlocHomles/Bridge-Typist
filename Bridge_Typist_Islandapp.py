@@ -3,8 +3,7 @@ import random
 import time
 from streamlit_autorefresh import st_autorefresh
 
-# --- CONFIG & KATA ---
-KATA_LIST = ["MATAHARI", "PASIR", "PULAU", "BUKU", "JEMBATAN", "STRATEGI", "KOMPUTER", "SAMUDRA", "GURITA", "HIU", "KARANG"]
+KATA_LIST = ["MATAHARI", "PASIR", "PULAU", "BUKU", "JEMBATAN", "STRATEGI", "KOMPUTER", "SAMUDRA", "GURITA", "HIU", "KARANG", "NAVIGASI", "JANGKAR", "DERMAGA"]
 
 st.set_page_config(page_title="Ship Navigator", layout="centered")
 
@@ -95,8 +94,10 @@ if not st.session_state.game_over:
     st.info(f"AWAS! Ada batu di sebelah **{st.session_state.posisi_batu.upper()}**! Ketik kata di bawah untuk menghindar ke arah berlawanan!")
 
     st.markdown(f"""
-        <div style="text-align: center; background: #fdfefe; padding: 15px; border-radius: 10px; border: 2px solid #3498db;">
-            <h2 style="letter-spacing: 5px;">{st.session_state.kata_target}</h2>
+        <div style="text-align: center; background: #ffffff; padding: 20px; border-radius: 10px; border: 3px solid #3498db; margin-bottom: 20px;">
+            <h1 style="color: #2c3e50; letter-spacing: 8px; font-family: 'Courier New', monospace; font-weight: bold;">
+                {st.session_state.kata_target}
+            </h1>
         </div>
     """, unsafe_allow_html=True)
 
