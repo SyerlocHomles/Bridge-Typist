@@ -83,5 +83,9 @@ else:
         st.session_state.skor_tertinggi = st.session_state.pulau_ke
         st.balloons()
         st.success(f"🔥 REKOR BARU! {st.session_state.skor_tertinggi}")
-    else:
-        st.write(f"🏆 Rekor
+else:
+        st.write(f"🏆 Rekor Tertinggi: {st.session_state.skor_tertinggi}")
+
+    if st.button("MULAI LAGI 🔄"):
+        reset_game()
+        st.rerun()
