@@ -48,17 +48,17 @@ if not st.session_state.game_over:
         </div>
     """, unsafe_allow_html=True)
 
-    input_user = st.text_input("Ketik di sini (Cepat!):", key="typing_input").upper()
+input_user = st.text_input("Ketik di sini lalu tekan ENTER:", key="typing_input").upper()
 
     if input_user:
         target = st.session_state.kata_target
-        if target.startswith(input_user):
-            if input_user == target:
-                st.session_state.pulau_ke += 1
-                st.session_state.kata_target = random.choice(KATA_LIST)
-                st.session_state.start_time = time.time() 
-                st.rerun()
-        else:
+        if input_user == target:
+            st.session_state.pulau_ke += 1
+            st.session_state.kata_target = random.choice(KATA_LIST)
+            st.session_state.start_time = time.time() 
+            st.rerun()
+        elif not target.startswith(input_user):
+            # Hanya kalah jika huruf yang diketik memang salah
             st.session_state.game_over = True
             st.rerun()
     
