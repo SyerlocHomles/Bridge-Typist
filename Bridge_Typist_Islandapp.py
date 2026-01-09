@@ -22,17 +22,14 @@ def reset_game():
     st.session_state.start_time = time.time()
 
 # --- LOGIKA WAKTU ---
-# Waktu dasar 8 detik, berkurang 0.3 detik setiap pulau (minimal 2 detik)
 waktu_maksimal = max(8.0 - (st.session_state.pulau_ke * 0.3), 2.0)
 waktu_berjalan = time.time() - st.session_state.start_time
 waktu_tersisa = waktu_maksimal - waktu_berjalan
 
 # --- TAMPILAN UTAMA ---
 st.title("🏝️ Bridge Typist: Extreme Edition")
-st.write(f"Waktu kamu semakin sempit di setiap pulau!")
 
 if not st.session_state.game_over:
-    # Cek jika waktu habis
     if waktu_tersisa <= 0:
         st.session_state.game_over = True
         st.rerun()
@@ -43,7 +40,6 @@ if not st.session_state.game_over:
     with cols[1]:
         st.metric("⏳ Waktu", f"{max(0.0, waktu_tersisa):.1f}s")
 
-    # Bar waktu yang bergerak mundur
     st.progress(max(0.0, waktu_tersisa / waktu_maksimal))
 
     st.markdown(f"""
@@ -60,22 +56,21 @@ if not st.session_state.game_over:
             if input_user == target:
                 st.session_state.pulau_ke += 1
                 st.session_state.kata_target = random.choice(KATA_LIST)
-                st.session_state.start_time = time.time() # Reset waktu untuk pulau baru
+                st.session_state.start_time = time.time() 
                 st.rerun()
         else:
             st.session_state.game_over = True
             st.rerun()
     
-    # Otomatis refresh halaman untuk update timer (opsional tapi membantu)
     time.sleep(0.1)
     st.rerun()
 
 else:
-    # --- GAME OVER ---
+    # --- TAMPILAN GAME OVER ---
     if waktu_tersisa <= 0:
-        st.error("⏰ WAKTU HABIS! Jembatannya rubuh karena kamu kelamaan mikir!")
+        st.error("⏰ WAKTU HABIS! Jembatannya rubuh!")
     else:
-        st.error("🌊 BYURRR! Salah ketik! Kamu terpeleset ke laut!")
+        st.error("🌊 BYURRR! Salah ketik!")
         
     st.write(f"### Skor Akhir: {st.session_state.pulau_ke} Pulau")
     
@@ -83,7 +78,7 @@ else:
         st.session_state.skor_tertinggi = st.session_state.pulau_ke
         st.balloons()
         st.success(f"🔥 REKOR BARU! {st.session_state.skor_tertinggi}")
-else:
+    else:
         st.write(f"🏆 Rekor Tertinggi: {st.session_state.skor_tertinggi}")
 
     if st.button("MULAI LAGI 🔄"):
